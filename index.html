@@ -9,7 +9,7 @@
 :root {
   --navy: #081b2d;
   --blue: #1d5f91;
-  --blue-light: #2a7bb8;
+  --blue-light: #4da3ff;
   --ink: #142235;
   --muted: #66768a;
   --line: #e4eaf0;
@@ -27,7 +27,6 @@ body {
   color: var(--ink);
   background: var(--bg);
   line-height: 1.65;
-  /* بک‌گراند مهندسی: گرادیان + پترن ظریف */
   background-image: 
     radial-gradient(circle at 15% 50%, rgba(29,95,145,0.04) 0%, transparent 45%),
     radial-gradient(circle at 85% 20%, rgba(8,27,45,0.03) 0%, transparent 40%),
@@ -35,7 +34,6 @@ body {
   background-attachment: fixed;
 }
 
-/* پترن خطوط فنی ظریف */
 body::before {
   content: "";
   position: fixed;
@@ -50,42 +48,154 @@ body::before {
 
 a { color: inherit; text-decoration: none; }
 
-/* ========== NAV ========== */
-.nav {
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  width: 100%;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--line);
-  transition: box-shadow 0.3s;
+/* ========== ENGINEERING HEADER (LinkedIn style) ========== */
+.header-wrapper {
+  position: relative;
+  z-index: 50;
 }
-.nav.scrolled { box-shadow: 0 4px 24px rgba(8,27,45,0.08); }
 
-.navin {
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  background: linear-gradient(90deg, #081b2d 0%, #0d2a45 50%, #081b2d 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+.top-bar-inner {
   max-width: 1180px;
-  margin: auto;
-  padding: 14px 26px;
+  margin: 0 auto;
+  padding: 0 26px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.brand {
-  font-weight: 850;
-  letter-spacing: 1.6px;
-  color: var(--navy);
-  font-size: 15px;
-}
-.menu a {
-  margin-left: 28px;
+
+.top-brand {
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: #ffffff;
   font-size: 14px;
-  color: #455568;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-brand span {
+  color: #4da3ff;
+  font-weight: 600;
+}
+
+.top-menu a {
+  color: #c8d5e2;
+  font-size: 13.5px;
   font-weight: 500;
+  margin-left: 28px;
   transition: color 0.2s;
 }
-.menu a:hover { color: var(--blue); }
+
+.top-menu a:hover {
+  color: #4da3ff;
+}
+
+/* ========== LOGO SECTION (below header) ========== */
+.logo-section {
+  padding-top: 56px;
+  background: linear-gradient(180deg, #0a1f33 0%, #0d2a45 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(77,163,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77,163,255,0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.logo-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 38px 26px 32px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.personal-logo {
+  width: 92px;
+  height: 92px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #1d5f91, #0d2a45);
+  border: 3px solid #4da3ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.personal-logo::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.logo-initials {
+  font-size: 32px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.logo-text {
+  color: #ffffff;
+}
+
+.logo-text h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+}
+
+.logo-text h1 span {
+  color: #4da3ff;
+}
+
+.logo-text p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #a8bdd0;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.logo-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(77,163,255,0.4), transparent);
+  margin: 0 26px;
+}
 
 /* ========== LAYOUT ========== */
 .wrap {
@@ -96,12 +206,12 @@ a { color: inherit; text-decoration: none; }
 
 /* ========== HERO ========== */
 .hero {
-  min-height: 100vh;
+  min-height: 90vh;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   align-items: center;
   gap: 60px;
-  padding-top: 110px;
+  padding-top: 50px;
   padding-bottom: 60px;
 }
 
@@ -392,10 +502,23 @@ footer {
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 860px) {
-  .menu { display: none; }
+  .top-menu { display: none; }
+  .logo-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+    padding: 28px 20px 24px;
+  }
+  .personal-logo {
+    width: 78px;
+    height: 78px;
+  }
+  .logo-initials { font-size: 26px; }
+  .logo-text h1 { font-size: 22px; }
+
   .hero {
     grid-template-columns: 1fr;
-    padding-top: 130px;
+    padding-top: 40px;
     text-align: center;
     gap: 40px;
   }
@@ -410,19 +533,38 @@ footer {
 </head>
 <body>
 
-<!-- ========== NAV ========== -->
-<nav class="nav" id="navbar">
-  <div class="navin">
-    <div class="brand">POUYA ABSARI</div>
-    <div class="menu">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+<!-- ========== ENGINEERING HEADER ========== -->
+<div class="header-wrapper">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-brand">
+        POUYA ABSARI <span>| ME</span>
+      </div>
+      <div class="top-menu">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
   </div>
-</nav>
+
+  <!-- Logo Section (پایین هدر) -->
+  <div class="logo-section">
+    <div class="logo-container">
+      <div class="personal-logo">
+        <div class="logo-initials">PA</div>
+      </div>
+      <div class="logo-text">
+        <h1>Pouya <span>Absari</span></h1>
+        <p>Mechanical Engineer · Design · Fluid Mechanics · Dynamics</p>
+      </div>
+    </div>
+    <div class="logo-divider"></div>
+  </div>
+</div>
 
 <main class="wrap">
 
@@ -442,7 +584,6 @@ footer {
     </div>
 
     <div class="photo">
-      <!-- عکس پروفایل - مطمئن شو فایل Profile.png در روت ریپو باشه -->
       <img src="Profile.png" alt="Pouya Absari" width="340" height="340">
     </div>
   </header>
@@ -517,7 +658,6 @@ footer {
 
     <div class="grid">
 
-      <!-- Project 1 -->
       <div class="card project">
         <img class="project-img" src="projects/nova.jpg" alt="Project NOVA" 
              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%23dce8f2%22 width=%22400%22 height=%22200%22/%3E%3Ctext fill=%22%231d5f91%22 font-family=%22sans-serif%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EProject NOVA%3C/text%3E%3C/svg%3E'">
@@ -532,7 +672,6 @@ footer {
         </div>
       </div>
 
-      <!-- Project 2 -->
       <div class="card project">
         <img class="project-img" src="projects/cad-3dprint.jpg" alt="CAD & 3D Printing"
              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%23dce8f2%22 width=%22400%22 height=%22200%22/%3E%3Ctext fill=%22%231d5f91%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ECAD &amp; 3D Print%3C/text%3E%3C/svg%3E'">
@@ -547,7 +686,6 @@ footer {
         </div>
       </div>
 
-      <!-- Project 3 -->
       <div class="card project">
         <img class="project-img" src="projects/robotics.jpg" alt="Robotics Project"
              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%23dce8f2%22 width=%22400%22 height=%22200%22/%3E%3Ctext fill=%22%231d5f91%22 font-family=%22sans-serif%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ERobotics%3C/text%3E%3C/svg%3E'">
@@ -561,7 +699,6 @@ footer {
         </div>
       </div>
 
-      <!-- Project 4 -->
       <div class="card project">
         <img class="project-img" src="projects/materials.jpg" alt="Materials Testing"
              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%23dce8f2%22 width=%22400%22 height=%22200%22/%3E%3Ctext fill=%22%231d5f91%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EMaterials Testing%3C/text%3E%3C/svg%3E'">
@@ -608,14 +745,14 @@ footer {
       <div class="card">
         <h3 style="margin-top:0;color:var(--navy)">Professional</h3>
         <p class="muted" style="margin-bottom:4px">LinkedIn</p>
-        <a href="https://linkedin.com/in/your-profile" target="_blank">linkedin.com/in/your-profile</a>
+        <a href="https://www.linkedin.com/in/pouyaabsari" target="_blank">https://www.linkedin.com/in/pouyaabsari</a>
         
         <p class="muted" style="margin-top:18px;margin-bottom:4px">Email</p>
-        <a href="mailto:your.email@example.com">your.email@example.com</a>
+        <a href="mailto:Pouyaabsari@gmail.com">Pouyaabsari@gmail.com</a>
       </div>
       <div class="card">
         <h3 style="margin-top:0;color:var(--navy)">Location</h3>
-        <p class="muted">Tehran, Iran</p>
+        <p class="muted">Tehran Province , Iran</p>
         <p class="muted" style="margin-bottom:0">
           Available for engineering internships, research collaborations, 
           technical projects and industrial opportunities.
@@ -631,17 +768,5 @@ footer {
   <span class="small">Professional portfolio · Designed for desktop & mobile</span>
 </footer>
 
-<script>
-  // سایه هدر وقتی اسکرول می‌شه
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    if (window.scrollY > 40) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  });
-</script>
-
 </body>
-          </html>
+</html>
