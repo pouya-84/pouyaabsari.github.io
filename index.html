@@ -60,7 +60,7 @@ a { color: inherit; text-decoration: none; }
   left: 0;
   width: 100%;
   height: 56px;
-  background: linear-gradient(90deg, #081b2d 0%, #0d2a45 50%, #081b2d 100%);
+  background: linear-gradient(90deg, #0d2a45 0%, #133a5c 50%, #0d2a45 100%);
   border-bottom: 1px solid rgba(255,255,255,0.08);
   display: flex;
   align-items: center;
@@ -108,7 +108,7 @@ a { color: inherit; text-decoration: none; }
 /* ========== LOGO SECTION ========== */
 .logo-section {
   padding-top: 56px;
-  background: linear-gradient(180deg, #0a1f33 0%, #0d2a45 100%);
+  background: linear-gradient(180deg, #12324d 0%, #163d5c 100%); /* روشن‌تر شده */
   position: relative;
   overflow: hidden;
 }
@@ -121,14 +121,14 @@ a { color: inherit; text-decoration: none; }
     linear-gradient(rgba(77,163,255,0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(77,163,255,0.07) 1px, transparent 1px);
   background-size: 40px 40px;
-  opacity: 0.6;
+  opacity: 0.5;
   pointer-events: none;
 }
 
 .logo-container {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 36px 26px 34px;
+  padding: 40px 26px 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,19 +137,19 @@ a { color: inherit; text-decoration: none; }
   z-index: 2;
 }
 
-/* لوگو تصویری */
+/* ===== این بخش اندازه لوگو را کنترل می‌کند ===== */
 .personal-logo {
-  width: 140px;
-  height: 140px;
-  border-radius: 24px;
-  background: #ffffff;
-  border: 3px solid #4da3ff;
+  width: 180px;          /* ← اینجا سایز لوگو را تغییر بده (مثلاً 160px یا 200px) */
+  height: 180px;         /* ← این هم باید با width یکی باشد */
+  border-radius: 0;
+  background: transparent;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 14px 40px rgba(0,0,0,0.35);
-  overflow: hidden;
-  margin-bottom: 18px;
+  box-shadow: none;
+  overflow: visible;
+  margin-bottom: 0;
 }
 
 .personal-logo img {
@@ -157,36 +157,12 @@ a { color: inherit; text-decoration: none; }
   height: 100%;
   object-fit: contain;
   display: block;
-  padding: 8px;
-}
-
-.logo-text {
-  color: #ffffff;
-}
-
-.logo-text h1 {
-  margin: 0;
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  line-height: 1.15;
-}
-
-.logo-text h1 span {
-  color: #4da3ff;
-}
-
-.logo-text p {
-  margin: 8px 0 0;
-  font-size: 14px;
-  color: #a8bdd0;
-  font-weight: 500;
-  letter-spacing: 0.3px;
+  padding: 0;
 }
 
 .logo-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(77,163,255,0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(77,163,255,0.35), transparent);
   margin: 0 26px;
 }
 
@@ -498,13 +474,12 @@ footer {
   .top-menu { display: none; }
   
   .logo-container {
-    padding: 28px 20px 26px;
+    padding: 32px 20px 28px;
   }
   .personal-logo {
-    width: 110px;
-    height: 110px;
+    width: 140px;
+    height: 140px;
   }
-  .logo-text h1 { font-size: 22px; }
 
   .hero {
     grid-template-columns: 1fr;
@@ -544,14 +519,9 @@ footer {
   <!-- Logo Section -->
   <div class="logo-section">
     <div class="logo-container">
-      <!-- لوگو تصویری (Logo.png) -->
+      <!-- لوگو بدون کادر و بزرگ‌تر -->
       <div class="personal-logo">
         <img src="Logo.png" alt="Pouya Absari Logo">
-      </div>
-
-      <div class="logo-text">
-        <h1>Pouya <span>Absari</span></h1>
-        <p>Mechanical Engineer · Design · Fluid Mechanics · Dynamics</p>
       </div>
     </div>
     <div class="logo-divider"></div>
