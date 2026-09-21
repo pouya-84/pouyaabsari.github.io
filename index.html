@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Pouya Absari — Mechanical Engineer | Design, Fluid Mechanics, Dynamics, Robotics">
 <title>Pouya Absari | Mechanical Engineer</title>
+
 <style>
+
 :root {
   --navy: #081b2d;
   --blue: #1d5f91;
@@ -18,37 +20,332 @@
   --card-shadow: 0 12px 40px rgba(8,27,45,.06);
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* =========================================================
+   ENGINEERING ANIMATED BACKGROUND
+   ========================================================= */
 
 body {
   margin: 0;
   font-family: Inter, Segoe UI, system-ui, -apple-system, sans-serif;
   color: var(--ink);
-  background: var(--bg);
   line-height: 1.65;
-  background-image: 
-    radial-gradient(circle at 15% 50%, rgba(29,95,145,0.04) 0%, transparent 45%),
-    radial-gradient(circle at 85% 20%, rgba(8,27,45,0.03) 0%, transparent 40%),
-    linear-gradient(180deg, #f8fafc 0%, #f0f4f8 100%);
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(77,163,255,0.055),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(29,95,145,0.045),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #fbfdff 0%,
+      #f6f9fc 50%,
+      #f2f6fa 100%
+    );
+
   background-attachment: fixed;
+  overflow-x: hidden;
 }
+
+
+/* Engineering grid */
 
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: 
-    linear-gradient(rgba(29,95,145,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(29,95,145,0.03) 1px, transparent 1px);
+
+  background-image:
+    linear-gradient(
+      rgba(29,95,145,0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(29,95,145,0.035) 1px,
+      transparent 1px
+    );
+
   background-size: 48px 48px;
+
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
 }
 
-a { color: inherit; text-decoration: none; }
 
-/* ========== ENGINEERING HEADER ========== */
+/* Soft technical glow */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+
+  background:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(77,163,255,0.035),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 80% 65%,
+      rgba(8,27,45,0.025),
+      transparent 25%
+    );
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* =========================================================
+   ROTATING MECHANICAL BACKGROUND
+   ========================================================= */
+
+.mechanical-background {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+  overflow: hidden;
+
+  z-index: 0;
+
+  opacity: 0.34;
+}
+
+
+/* Every gear */
+
+.gear {
+  position: absolute;
+
+  width: var(--gear-size);
+  height: var(--gear-size);
+
+  border-radius: 50%;
+
+  border:
+    calc(var(--gear-size) * 0.075)
+    solid
+    rgba(29,95,145,0.20);
+
+  background:
+    radial-gradient(
+      circle,
+      transparent 0 19%,
+      rgba(29,95,145,0.07) 20% 23%,
+      transparent 24% 100%
+    );
+
+  animation:
+    gearRotate
+    var(--gear-speed)
+    linear
+    infinite;
+
+  filter: blur(0.15px);
+}
+
+
+/* Gear teeth */
+
+.gear::before {
+  content: "";
+
+  position: absolute;
+
+  inset: calc(var(--gear-size) * -0.055);
+
+  border-radius: 50%;
+
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(29,95,145,0.20) 0deg 7deg,
+      transparent 7deg 15deg
+    );
+
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent 0 48%,
+      #000 49% 63%,
+      transparent 64%
+    );
+
+  mask:
+    radial-gradient(
+      circle,
+      transparent 0 48%,
+      #000 49% 63%,
+      transparent 64%
+    );
+}
+
+
+/* Center hole */
+
+.gear::after {
+  content: "";
+
+  position: absolute;
+
+  width: 18%;
+  height: 18%;
+
+  left: 41%;
+  top: 41%;
+
+  border-radius: 50%;
+
+  border: 3px solid rgba(29,95,145,0.20);
+
+  background: rgba(255,255,255,0.55);
+
+  box-shadow:
+    0 0 0 6px rgba(29,95,145,0.035),
+    inset 0 0 8px rgba(8,27,45,0.05);
+}
+
+
+/* =========================================================
+   INDIVIDUAL GEAR POSITIONS
+   ========================================================= */
+
+.gear-1 {
+  --gear-size: 270px;
+  --gear-speed: 32s;
+
+  top: 8%;
+  left: -70px;
+
+  opacity: 0.55;
+}
+
+.gear-2 {
+  --gear-size: 180px;
+  --gear-speed: 24s;
+
+  top: 28%;
+  right: 7%;
+
+  opacity: 0.45;
+
+  animation-direction: reverse;
+}
+
+.gear-3 {
+  --gear-size: 340px;
+  --gear-speed: 45s;
+
+  top: 54%;
+  left: 5%;
+
+  opacity: 0.32;
+}
+
+.gear-4 {
+  --gear-size: 220px;
+  --gear-speed: 29s;
+
+  bottom: 5%;
+  right: -45px;
+
+  opacity: 0.42;
+
+  animation-direction: reverse;
+}
+
+.gear-5 {
+  --gear-size: 120px;
+  --gear-speed: 18s;
+
+  top: 72%;
+  right: 27%;
+
+  opacity: 0.35;
+}
+
+.gear-6 {
+  --gear-size: 150px;
+  --gear-speed: 21s;
+
+  top: 12%;
+  right: 30%;
+
+  opacity: 0.22;
+
+  animation-direction: reverse;
+}
+
+
+/* Gear rotation */
+
+@keyframes gearRotate {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* =========================================================
+   CONTENT ABOVE BACKGROUND
+   ========================================================= */
+
+.header-wrapper,
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gear {
+    animation: none;
+  }
+
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   ENGINEERING HEADER
+   ========================================================= */
+
 .header-wrapper {
   position: relative;
   z-index: 50;
@@ -60,12 +357,24 @@ a { color: inherit; text-decoration: none; }
   left: 0;
   width: 100%;
   height: 40px;
-  background: linear-gradient(90deg, #0d2a45 0%, #133a5c 50%, #0d2a45 100%);
+
+  background:
+    linear-gradient(
+      90deg,
+      #0d2a45 0%,
+      #133a5c 50%,
+      #0d2a45 100%
+    );
+
   border-bottom: 1px solid rgba(255,255,255,0.08);
+
   display: flex;
   align-items: center;
+
   z-index: 100;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+
+  box-shadow:
+    0 4px 20px rgba(0,0,0,0.25);
 }
 
 .top-bar-inner {
@@ -73,6 +382,7 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto;
   padding: 0 26px;
   width: 100%;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -83,6 +393,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 2.5px;
   color: #ffffff;
   font-size: 14px;
+
   display: flex;
   align-items: center;
   gap: 10px;
@@ -97,7 +408,9 @@ a { color: inherit; text-decoration: none; }
   color: #c8d5e2;
   font-size: 13.5px;
   font-weight: 500;
+
   margin-left: 28px;
+
   transition: color 0.2s;
 }
 
@@ -105,631 +418,1415 @@ a { color: inherit; text-decoration: none; }
   color: #4da3ff;
 }
 
-/* ========== LOGO SECTION ========== */
+
+/* =========================================================
+   LOGO SECTION
+   ========================================================= */
+
 .logo-section {
   padding-top: 56px;
-  background: linear-gradient(180deg, #12324d 0%, #163d5c 100%); /* روشن‌تر شده */
+
+  background:
+    linear-gradient(
+      180deg,
+      #12324d 0%,
+      #163d5c 100%
+    );
+
   position: relative;
   overflow: hidden;
 }
 
 .logo-section::before {
   content: "";
+
   position: absolute;
   inset: 0;
-  background-image: 
-    linear-gradient(rgba(77,163,255,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(77,163,255,0.07) 1px, transparent 1px);
+
+  background-image:
+    linear-gradient(
+      rgba(77,163,255,0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(77,163,255,0.07) 1px,
+      transparent 1px
+    );
+
   background-size: 40px 40px;
+
   opacity: 0.5;
+
   pointer-events: none;
 }
 
 .logo-container {
   max-width: 1180px;
   margin: 0 auto;
+
   padding: 40px 26px 36px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
   text-align: center;
+
   position: relative;
   z-index: 2;
 }
 
-/* ===== این بخش اندازه لوگو را کنترل می‌کند ===== */
+
+/* Logo */
+
 .personal-logo {
   width: clamp(250px, 50vw, 400px);
   height: clamp(250px, 50vw, 400px);
+
   border-radius: 0;
+
   background: transparent;
+
   border: none;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   box-shadow: none;
+
   overflow: visible;
+
   margin-bottom: 0;
 }
 
 .personal-logo img {
   width: 100%;
   height: 100%;
+
   object-fit: contain;
+
   display: block;
 }
 
 .logo-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(77,163,255,0.35), transparent);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(77,163,255,0.35),
+      transparent
+    );
+
   margin: 0 26px;
 }
 
-/* ========== LAYOUT ========== */
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
 .wrap {
   max-width: 1180px;
   margin: auto;
   padding: 0 26px;
 }
 
-/* ========== HERO ========== */
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
 .hero {
   min-height: 90vh;
+
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+
+  grid-template-columns:
+    1.2fr 0.8fr;
+
   align-items: center;
+
   gap: 60px;
+
   padding-top: 50px;
   padding-bottom: 60px;
 }
 
 .eyebrow {
   text-transform: uppercase;
+
   letter-spacing: 3.2px;
+
   color: var(--blue);
+
   font-weight: 800;
+
   font-size: 13px;
+
   margin-bottom: 8px;
 }
 
 .hero h1 {
   font-size: clamp(48px, 7vw, 84px);
+
   line-height: 0.98;
+
   margin: 12px 0 20px;
+
   color: var(--navy);
+
   font-weight: 800;
 }
+
 .hero h1 span {
   display: block;
+
   color: var(--blue);
 }
 
 .lead {
   font-size: 19px;
+
   color: var(--muted);
+
   max-width: 540px;
+
   margin-bottom: 32px;
 }
 
 .actions {
   display: flex;
+
   gap: 14px;
+
   flex-wrap: wrap;
 }
 
 .btn {
   padding: 13px 24px;
+
   border-radius: 10px;
+
   font-weight: 700;
+
   font-size: 15px;
+
   transition: all 0.2s;
+
   display: inline-flex;
+
   align-items: center;
+
   gap: 8px;
 }
+
 .primary {
   background: var(--navy);
+
   color: #fff;
 }
+
 .primary:hover {
   background: #0d2a45;
+
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(8,27,45,0.2);
+
+  box-shadow:
+    0 8px 24px rgba(8,27,45,0.2);
 }
+
 .outline {
   background: #fff;
+
   border: 1.5px solid #cfd9e4;
+
   color: var(--navy);
 }
+
 .outline:hover {
   border-color: var(--blue);
+
   color: var(--blue);
 }
 
-/* ========== PHOTO ========== */
+
+/* =========================================================
+   PHOTO
+   ========================================================= */
+
 .photo {
   width: min(340px, 78vw);
+
   aspect-ratio: 1;
+
   border-radius: 28px;
-  background: linear-gradient(145deg, #e8f0f7, #d0dce8);
+
+  background:
+    linear-gradient(
+      145deg,
+      #e8f0f7,
+      #d0dce8
+    );
+
   border: 1px solid #d0dce8;
+
   display: flex;
+
   align-items: center;
   justify-content: center;
-  box-shadow: 0 30px 80px rgba(8,27,45,0.14);
+
+  box-shadow:
+    0 30px 80px rgba(8,27,45,0.14);
+
   overflow: hidden;
+
   position: relative;
 }
+
 .photo img {
   width: 100%;
   height: 100%;
+
   object-fit: cover;
+
   display: block;
 }
 
-/* ========== SECTIONS ========== */
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
 section {
   padding: 90px 0;
 }
+
 .title {
   font-size: 34px;
+
   color: var(--navy);
+
   margin: 0 0 12px;
+
   font-weight: 800;
 }
+
 .subtitle {
   color: var(--muted);
+
   max-width: 640px;
+
   margin: 0 0 36px;
+
   font-size: 17px;
 }
 
 .card {
   background: var(--white);
+
   border: 1px solid var(--line);
+
   border-radius: 18px;
+
   padding: 28px;
+
   box-shadow: var(--card-shadow);
 }
 
-/* ========== TIMELINE ========== */
+
+/* =========================================================
+   TIMELINE
+   ========================================================= */
+
 .timeline {
   border-left: 2px solid #d6e0ea;
+
   padding-left: 28px;
 }
+
 .item {
   position: relative;
+
   margin-bottom: 36px;
 }
+
 .item:before {
   content: "";
+
   position: absolute;
+
   left: -35px;
+
   top: 6px;
+
   width: 14px;
   height: 14px;
+
   border-radius: 50%;
+
   background: var(--blue);
+
   border: 4px solid var(--bg);
 }
+
 .date {
   font-size: 12px;
+
   font-weight: 800;
+
   color: var(--blue);
+
   text-transform: uppercase;
+
   letter-spacing: 1.2px;
 }
+
 .item h3 {
   margin: 6px 0 6px;
+
   color: var(--navy);
+
   font-size: 20px;
 }
-.muted { color: var(--muted); }
 
-/* ========== SKILLS ========== */
+.muted {
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   SKILLS
+   ========================================================= */
+
 .tags {
   display: flex;
+
   gap: 10px;
+
   flex-wrap: wrap;
 }
+
 .tag {
   padding: 9px 16px;
+
   border-radius: 999px;
+
   background: #eef5fa;
+
   color: #18527f;
+
   font-size: 13.5px;
+
   font-weight: 700;
+
   transition: all 0.2s;
 }
+
 .tag:hover {
   background: var(--blue);
+
   color: #fff;
 }
 
-/* ========== PROJECTS ========== */
+
+/* =========================================================
+   PROJECTS
+   ========================================================= */
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
   gap: 24px;
 }
 
 .project {
   transition: all 0.25s ease;
+
   overflow: hidden;
+
   padding: 0;
+
   display: flex;
+
   flex-direction: column;
 }
+
 .project:hover {
   transform: translateY(-6px);
-  box-shadow: 0 22px 55px rgba(8,27,45,0.12);
+
+  box-shadow:
+    0 22px 55px rgba(8,27,45,0.12);
 }
 
 .project-img {
   width: 100%;
+
   height: 200px;
+
   object-fit: cover;
-  background: linear-gradient(135deg, #dce8f2, #c5d5e4);
+
+  background:
+    linear-gradient(
+      135deg,
+      #dce8f2,
+      #c5d5e4
+    );
+
   display: block;
 }
 
 .project-body {
   padding: 24px 26px 26px;
+
   flex: 1;
+
   display: flex;
+
   flex-direction: column;
 }
 
 .project .type {
   color: var(--blue);
+
   font-weight: 800;
+
   font-size: 12px;
+
   letter-spacing: 1px;
+
   text-transform: uppercase;
+
   margin-bottom: 8px;
 }
 
 .project h3 {
   margin: 0 0 10px;
+
   color: var(--navy);
+
   font-size: 20px;
 }
 
 .project p {
   color: var(--muted);
+
   font-size: 15px;
+
   margin: 0 0 18px;
+
   flex: 1;
 }
 
 .project-links {
   display: flex;
+
   gap: 10px;
+
   flex-wrap: wrap;
+
   margin-top: auto;
 }
 
 .btn-sm {
   padding: 8px 14px;
+
   border-radius: 8px;
+
   font-size: 13px;
+
   font-weight: 700;
+
   border: 1.5px solid #d0dce8;
+
   background: #fff;
+
   color: var(--navy);
+
   transition: all 0.2s;
 }
+
 .btn-sm:hover {
   border-color: var(--blue);
+
   color: var(--blue);
+
   background: #f0f7fc;
 }
+
 .btn-sm.primary-sm {
   background: var(--navy);
+
   color: #fff;
+
   border-color: var(--navy);
 }
+
 .btn-sm.primary-sm:hover {
   background: var(--blue);
+
   border-color: var(--blue);
 }
 
-/* ========== INTERESTS ========== */
+
+/* =========================================================
+   INTERESTS
+   ========================================================= */
+
 .interest-card h3 {
   margin-top: 0;
+
   color: var(--navy);
+
   font-size: 18px;
 }
 
-/* ========== CONTACT ========== */
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
 .contact {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
+
   gap: 24px;
 }
+
 .contact a {
   color: var(--blue);
+
   font-weight: 700;
 }
-.contact a:hover { text-decoration: underline; }
 
-/* ========== FOOTER ========== */
+.contact a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
 footer {
   background: var(--navy);
+
   color: #c8d5e2;
+
   text-align: center;
+
   padding: 42px 20px;
+
   margin-top: 40px;
 }
+
 .small {
   font-size: 13px;
+
   color: #8fa3b7;
+
   display: block;
+
   margin-top: 6px;
 }
 
-/* ========== RESPONSIVE ========== */
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
 @media (max-width: 860px) {
-  .top-menu { display: none; }
-  
+
+  .top-menu {
+    display: none;
+  }
+
   .logo-container {
     padding: 32px 20px 28px;
   }
 
   .hero {
     grid-template-columns: 1fr;
+
     padding-top: 40px;
+
     text-align: center;
+
     gap: 40px;
   }
-  .lead { margin-left: auto; margin-right: auto; }
-  .actions { justify-content: center; }
-  .photo { width: 260px; margin: 0 auto; }
-  .grid, .contact { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 52px; }
-  section { padding: 70px 0; }
+
+  .lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .photo {
+    width: 260px;
+
+    margin: 0 auto;
+  }
+
+  .grid,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 52px;
+  }
+
+  section {
+    padding: 70px 0;
+  }
+
+
+  /* Mobile background */
+
+  .mechanical-background {
+    opacity: 0.24;
+  }
+
+  .gear-1 {
+    --gear-size: 190px;
+
+    left: -80px;
+  }
+
+  .gear-2 {
+    --gear-size: 130px;
+
+    right: -35px;
+  }
+
+  .gear-3 {
+    --gear-size: 230px;
+
+    left: -80px;
+  }
+
+  .gear-4 {
+    --gear-size: 170px;
+
+    right: -70px;
+  }
+
+  .gear-5,
+  .gear-6 {
+    display: none;
+  }
+
 }
+
 </style>
 </head>
+
+
 <body>
 
-<!-- ========== ENGINEERING HEADER ========== -->
+
+<!-- =========================================================
+     ANIMATED MECHANICAL BACKGROUND
+     ========================================================= -->
+
+<div class="mechanical-background" aria-hidden="true">
+
+  <div class="gear gear-1"></div>
+
+  <div class="gear gear-2"></div>
+
+  <div class="gear gear-3"></div>
+
+  <div class="gear gear-4"></div>
+
+  <div class="gear gear-5"></div>
+
+  <div class="gear gear-6"></div>
+
+</div>
+
+
+<!-- =========================================================
+     ENGINEERING HEADER
+     ========================================================= -->
+
 <div class="header-wrapper">
+
   <!-- Top Bar -->
+
   <div class="top-bar">
+
     <div class="top-bar-inner">
+
       <div class="top-brand">
         POUYA ABSARI <span>| ME</span>
       </div>
+
       <div class="top-menu">
+
         <a href="#about">About</a>
+
         <a href="#experience">Experience</a>
+
         <a href="#skills">Skills</a>
+
         <a href="#projects">Projects</a>
+
         <a href="#contact">Contact</a>
+
       </div>
+
     </div>
+
   </div>
 
+
   <!-- Logo Section -->
+
   <div class="logo-section">
+
     <div class="logo-container">
-      <!-- لوگو بدون کادر و بزرگ‌تر -->
+
       <div class="personal-logo">
-        <img src="Logo.png" alt="Pouya Absari Logo">
+
+        <img
+          src="Logo.png"
+          alt="Pouya Absari Logo"
+        >
+
       </div>
+
     </div>
+
     <div class="logo-divider"></div>
+
   </div>
+
 </div>
+
 
 <main class="wrap">
 
-  <!-- ========== HERO ========== -->
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+
   <header class="hero">
+
     <div>
-      <div class="eyebrow">Mechanical Engineer</div>
-      <h1>Pouya<span>Absari</span></h1>
-      <p class="lead">
-        Mechanical Engineering undergraduate with strong interest in Mechanical Design, 
-        Fluid Mechanics, Dynamics, Robotics, 3D Printing, Manufacturing and Engineering Technology.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href="#projects">Explore Projects</a>
-        <a class="btn outline" href="#contact">Contact Me</a>
+
+      <div class="eyebrow">
+        Mechanical Engineer
       </div>
+
+      <h1>
+        Pouya<span>Absari</span>
+      </h1>
+
+      <p class="lead">
+
+        Mechanical Engineering undergraduate with strong interest in Mechanical Design,
+        Fluid Mechanics, Dynamics, Robotics, 3D Printing, Manufacturing and Engineering Technology.
+
+      </p>
+
+      <div class="actions">
+
+        <a class="btn primary" href="#projects">
+          Explore Projects
+        </a>
+
+        <a class="btn outline" href="#contact">
+          Contact Me
+        </a>
+
+      </div>
+
     </div>
+
 
     <div class="photo">
-      <img src="Profile.png" alt="Pouya Absari" width="340" height="340">
+
+      <img
+        src="Profile.png"
+        alt="Pouya Absari"
+        width="340"
+        height="340"
+      >
+
     </div>
+
   </header>
 
-  <!-- ========== ABOUT ========== -->
+
+  <!-- =========================================================
+       ABOUT
+       ========================================================= -->
+
   <section id="about">
-    <h2 class="title">About</h2>
+
+    <h2 class="title">
+      About
+    </h2>
+
     <div class="card">
+
       <p>
-        I am a Mechanical Engineering student at the University of Science and Culture, 
-        interested in combining engineering fundamentals with practical design and emerging technologies. 
-        My core interests include mechanical design, fluid mechanics, dynamics, robotics, 
+
+        I am a Mechanical Engineering student at the University of Science and Culture,
+        interested in combining engineering fundamentals with practical design and emerging technologies.
+        My core interests include mechanical design, fluid mechanics, dynamics, robotics,
         manufacturing and computational tools.
+
       </p>
+
       <p style="margin-bottom:0">
-        I enjoy project-based learning and building practical systems — from CAD and prototyping 
+
+        I enjoy project-based learning and building practical systems — from CAD and prototyping
         to engineering research and automation.
+
       </p>
+
     </div>
+
   </section>
 
-  <!-- ========== EXPERIENCE ========== -->
+
+  <!-- =========================================================
+       EXPERIENCE
+       ========================================================= -->
+
   <section id="experience">
-    <h2 class="title">Education & Experience</h2>
+
+    <h2 class="title">
+      Education & Experience
+    </h2>
+
     <div class="timeline">
+
       <div class="item">
-        <div class="date">Education</div>
-        <h3>B.Sc. in Mechanical Engineering</h3>
-        <p class="muted">University of Science and Culture · Tehran,Iran . 2023-Present </p>
-        <h3>High School Diploma</h3>
-        <p class="muted">Mandegar Alborz High School · Tehran,Iran . 2020-2023</p>
+
+        <div class="date">
+          Education
+        </div>
+
+        <h3>
+          B.Sc. in Mechanical Engineering
+        </h3>
+
+        <p class="muted">
+          University of Science and Culture · Tehran,Iran . 2023-Present
+        </p>
+
+        <h3>
+          High School Diploma
+        </h3>
+
+        <p class="muted">
+          Mandegar Alborz High School · Tehran,Iran . 2020-2023
+        </p>
+
       </div>
+
+
       <div class="item">
-        <div class="date">Practical Experience</div>
-        <h3>Mechanical Workshop / Machining</h3>
-        <p class="muted">Hands-on exposure to crankshaft machining, engine components, lathe operations, cylinder blocks, valves and practical inspection.</p>
+
+        <div class="date">
+          Practical Experience
+        </div>
+
+        <h3>
+          Mechanical Workshop / Machining
+        </h3>
+
+        <p class="muted">
+
+          Hands-on exposure to crankshaft machining, engine components,
+          lathe operations, cylinder blocks, valves and practical inspection.
+
+        </p>
+
       </div>
+
+
       <div class="item">
-        <div class="date">Academic & Technical Activities</div>
-        <h3>Engineering Projects & Student Activities</h3>
-        <p class="muted">Participation in mechanical engineering, robotics, 3D printing, design and technical student activities.</p>
+
+        <div class="date">
+          Academic & Technical Activities
+        </div>
+
+        <h3>
+          Engineering Projects & Student Activities
+        </h3>
+
+        <p class="muted">
+
+          Participation in mechanical engineering, robotics,
+          3D printing, design and technical student activities.
+
+        </p>
+
       </div>
+
     </div>
+
   </section>
 
-  <!-- ========== SKILLS ========== -->
+
+  <!-- =========================================================
+       SKILLS
+       ========================================================= -->
+
   <section id="skills">
-    <h2 class="title">Technical Skills</h2>
-    <p class="subtitle">A growing engineering toolkit combining CAD, computation, manufacturing and core mechanical engineering.</p>
+
+    <h2 class="title">
+      Technical Skills
+    </h2>
+
+    <p class="subtitle">
+
+      A growing engineering toolkit combining CAD, computation,
+      manufacturing and core mechanical engineering.
+
+    </p>
+
     <div class="card">
+
       <div class="tags">
+
         <span class="tag">SolidWorks</span>
+
         <span class="tag">AutoCAD</span>
+
         <span class="tag">CATIA</span>
+
         <span class="tag">MATLAB</span>
+
         <span class="tag">Python</span>
+
         <span class="tag">3D Printing</span>
+
         <span class="tag">Mechanical Design</span>
+
         <span class="tag">Fluid Mechanics</span>
+
         <span class="tag">Dynamics</span>
+
         <span class="tag">Statics</span>
+
         <span class="tag">Materials</span>
+
         <span class="tag">Robotics</span>
+
         <span class="tag">GD&T</span>
+
         <span class="tag">FEA Basics</span>
+
         <span class="tag">Piping</span>
+
         <span class="tag">Photoshop</span>
+
         <span class="tag">ICDL</span>
 
       </div>
+
     </div>
+
   </section>
 
-  <!-- ========== PROJECTS ========== -->
+
+  <!-- =========================================================
+       PROJECTS
+       ========================================================= -->
+
   <section id="projects">
-    <h2 class="title">Selected Projects</h2>
-    <p class="subtitle">A selection of academic and personal engineering projects. Click the buttons to view images or download files.</p>
+
+    <h2 class="title">
+      Selected Projects
+    </h2>
+
+    <p class="subtitle">
+
+      A selection of academic and personal engineering projects.
+      Click the buttons to view images or download files.
+
+    </p>
+
 
     <div class="grid">
 
-      <div class="card project">
-        <img class="project-img" src="projects/nova.jpg" alt="Project NOVA" 
-             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%23dce8f2%22 width=%22400%22 height=%22200%22/%3E%3Ctext fill=%22%231d5f91%22 font-family=%22sans-serif%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EProject NOVA%3C/text%3E%3C/svg%3E'">
-        <div class="project-body">
-          <div class="type">AI · Python</div>
-          <h3>Project NOVA</h3>
-          <p>Personal AI-assistant focused on intelligent agents, long-term memory, automation and future human-computer interaction.</p>
-          <div class="project-links">
-            <a class="btn-sm primary-sm" href="projects/nova-report.pdf" target="_blank">Download PDF</a>
-            <a class="btn-sm" href="https://github.com/pouya-84" target="_blank">GitHub</a>
-          </div>
-        </div>
-      </div>
 
       <div class="card project">
-        <img class="project-img" src="projects/cad-3dprint.jpg" alt="CAD & 3D Printing"
-             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%23dce8f2%22 width=%22400%22 height=%22200%22/%3E%3Ctext fill=%22%231d5f91%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ECAD &amp; 3D Print%3C/text%3E%3C/svg%3E'">
+
+        <img
+          class="project-img"
+          src="projects/nova.jpg"
+          alt="Project NOVA"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%23dce8f2%22 width=%22400%22 height=%22200%22/%3E%3Ctext fill=%22%231d5f91%22 font-family=%22sans-serif%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EProject NOVA%3C/text%3E%3C/svg%3E'"
+        >
+
         <div class="project-body">
-          <div class="type">CAD · Manufacturing</div>
-          <h3>Mechanical Design & 3D Printing</h3>
-          <p>Design and prototyping of mechanical components linking SolidWorks models with additive manufacturing and practical fabrication.</p>
-          <div class="project-links">
-            <a class="btn-sm primary-sm" href="projects/cad-models.zip" download>Download CAD Files</a>
-            <a class="btn-sm" href="projects/cad-gallery.html">View Gallery</a>
+
+          <div class="type">
+            AI · Python
           </div>
+
+          <h3>
+            Project NOVA
+          </h3>
+
+          <p>
+
+            Personal AI-assistant focused on intelligent agents,
+            long-term memory, automation and future human-computer interaction.
+
+          </p>
+
+          <div class="project-links">
+
+            <a
+              class="btn-sm primary-sm"
+              href="projects/nova-report.pdf"
+              target="_blank"
+            >
+              Download PDF
+            </a>
+
+            <a
+              class="btn-sm"
+              href="https://github.com/pouya-84"
+              target="_blank"
+            >
+              GitHub
+            </a>
+
+          </div>
+
         </div>
+
       </div>
 
-      <div class="card project">
-        <img class="project-img" src="projects/robotics.jpg" alt="Robotics Project"
-             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%23dce8f2%22 width=%22400%22 height=%22200%22/%3E%3Ctext fill=%22%231d5f91%22 font-family=%22sans-serif%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ERobotics%3C/text%3E%3C/svg%3E'">
-        <div class="project-body">
-          <div class="type">Robotics</div>
-          <h3>Robotics & Mechanisms</h3>
-          <p>Exploration of mechanisms, kinematics and practical engineering systems through student technical activities and prototypes.</p>
-          <div class="project-links">
-            <a class="btn-sm primary-sm" href="projects/robotics-report.pdf" target="_blank">Download Report</a>
-          </div>
-        </div>
-      </div>
 
       <div class="card project">
-        <img class="project-img" src="projects/materials.jpg" alt="Materials Testing"
-             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%23dce8f2%22 width=%22400%22 height=%22200%22/%3E%3Ctext fill=%22%231d5f91%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EMaterials Testing%3C/text%3E%3C/svg%3E'">
+
+        <img
+          class="project-img"
+          src="projects/cad-3dprint.jpg"
+          alt="CAD & 3D Printing"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%23dce8f2%22 width=%22400%22 height=%22200%22/%3E%3Ctext fill=%22%231d5f91%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ECAD &amp; 3D Print%3C/text%3E%3C/svg%3E'"
+        >
+
         <div class="project-body">
-          <div class="type">Research · Materials</div>
-          <h3>Materials Testing (Charpy & Izod)</h3>
-          <p>Academic experimental work on impact testing of materials using Charpy and Izod methods, including data analysis and reporting.</p>
-          <div class="project-links">
-            <a class="btn-sm primary-sm" href="projects/charpy-izod.pdf" target="_blank">Download Lab Report</a>
+
+          <div class="type">
+            CAD · Manufacturing
           </div>
+
+          <h3>
+            Mechanical Design & 3D Printing
+          </h3>
+
+          <p>
+
+            Design and prototyping of mechanical components
+            linking SolidWorks models with additive manufacturing
+            and practical fabrication.
+
+          </p>
+
+          <div class="project-links">
+
+            <a
+              class="btn-sm primary-sm"
+              href="projects/cad-models.zip"
+              download
+            >
+              Download CAD Files
+            </a>
+
+            <a
+              class="btn-sm"
+              href="projects/cad-gallery.html"
+            >
+              View Gallery
+            </a>
+
+          </div>
+
         </div>
+
+      </div>
+
+
+      <div class="card project">
+
+        <img
+          class="project-img"
+          src="projects/robotics.jpg"
+          alt="Robotics Project"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%23dce8f2%22 width=%22400%22 height=%22200%22/%3E%3Ctext fill=%22%231d5f91%22 font-family=%22sans-serif%22%20font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ERobotics%3C/text%3E%3C/svg%3E'"
+        >
+
+        <div class="project-body">
+
+          <div class="type">
+            Robotics
+          </div>
+
+          <h3>
+            Robotics & Mechanisms
+          </h3>
+
+          <p>
+
+            Exploration of mechanisms, kinematics and practical engineering
+            systems through student technical activities and prototypes.
+
+          </p>
+
+          <div class="project-links">
+
+            <a
+              class="btn-sm primary-sm"
+              href="projects/robotics-report.pdf"
+              target="_blank"
+            >
+              Download Report
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="card project">
+
+        <img
+          class="project-img"
+          src="projects/materials.jpg"
+          alt="Materials Testing"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%23dce8f2%22 width=%22400%22 height=%22200%22/%3E%3Ctext fill=%22%231d5f91%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EMaterials Testing%3C/text%3E%3C/svg%3E'"
+        >
+
+        <div class="project-body">
+
+          <div class="type">
+            Research · Materials
+          </div>
+
+          <h3>
+            Materials Testing (Charpy & Izod)
+          </h3>
+
+          <p>
+
+            Academic experimental work on impact testing of materials
+            using Charpy and Izod methods, including data analysis and reporting.
+
+          </p>
+
+          <div class="project-links">
+
+            <a
+              class="btn-sm primary-sm"
+              href="projects/charpy-izod.pdf"
+              target="_blank"
+            >
+              Download Lab Report
+            </a>
+
+          </div>
+
+        </div>
+
       </div>
 
     </div>
+
   </section>
 
-  <!-- ========== INTERESTS ========== -->
+
+  <!-- =========================================================
+       INTERESTS
+       ========================================================= -->
+
   <section>
-    <h2 class="title">Engineering Interests</h2>
+
+    <h2 class="title">
+      Engineering Interests
+    </h2>
+
     <div class="grid">
+
       <div class="card interest-card">
-        <h3>Fluid Mechanics</h3>
-        <p class="muted">Flow physics, transport phenomena, boundary layers and engineering applications of fluid dynamics.</p>
+
+        <h3>
+          Fluid Mechanics
+        </h3>
+
+        <p class="muted">
+
+          Flow physics, transport phenomena, boundary layers
+          and engineering applications of fluid dynamics.
+
+        </p>
+
       </div>
+
+
       <div class="card interest-card">
-        <h3>Dynamics & Vibrations</h3>
-        <p class="muted">Statics, dynamics, multi-body systems and vibration analysis of mechanical structures.</p>
+
+        <h3>
+          Dynamics & Vibrations
+        </h3>
+
+        <p class="muted">
+
+          Statics, dynamics, multi-body systems and vibration
+          analysis of mechanical structures.
+
+        </p>
+
       </div>
+
+
       <div class="card interest-card">
-        <h3>Mechanical Design</h3>
-        <p class="muted">CAD modeling, mechanisms, machine elements, GD&T and engineering design methodology.</p>
+
+        <h3>
+          Mechanical Design
+        </h3>
+
+        <p class="muted">
+
+          CAD modeling, mechanisms, machine elements,
+          GD&T and engineering design methodology.
+
+        </p>
+
       </div>
+
+
       <div class="card interest-card">
-        <h3>Robotics & AI</h3>
-        <p class="muted">Robotics, automation, AI-assisted engineering design and intelligent prototyping systems.</p>
+
+        <h3>
+          Robotics & AI
+        </h3>
+
+        <p class="muted">
+
+          Robotics, automation, AI-assisted engineering design
+          and intelligent prototyping systems.
+
+        </p>
+
       </div>
+
     </div>
+
   </section>
 
-  <!-- ========== CONTACT ========== -->
+
+  <!-- =========================================================
+       CONTACT
+       ========================================================= -->
+
   <section id="contact">
-    <h2 class="title">Contact</h2>
+
+    <h2 class="title">
+      Contact
+    </h2>
+
     <div class="contact">
+
       <div class="card">
-        <h3 style="margin-top:0;color:var(--navy)">Professional</h3>
-        <p class="muted" style="margin-bottom:4px">LinkedIn</p>
-        <a href="https://www.linkedin.com/in/pouyaabsari" target="_blank">www.linkedin.com/in/pouyaabsari</a>
-        
-        <p class="muted" style="margin-top:18px;margin-bottom:4px">Email</p>
-        <a href="mailto:Pouyaabsari@gmail.com">Pouyaabsari@gmail.com</a>
-      </div>
-      <div class="card">
-        <h3 style="margin-top:0;color:var(--navy)">Location</h3>
-        <p class="muted">Tehran Province , Iran</p>
-        <p class="muted" style="margin-bottom:0">
-          Available for engineering internships, research collaborations, 
-          technical projects and industrial opportunities.
+
+        <h3 style="margin-top:0;color:var(--navy)">
+          Professional
+        </h3>
+
+        <p
+          class="muted"
+          style="margin-bottom:4px"
+        >
+          LinkedIn
         </p>
+
+        <a
+          href="https://www.linkedin.com/in/pouyaabsari"
+          target="_blank"
+        >
+          www.linkedin.com/in/pouyaabsari
+        </a>
+
+        <p
+          class="muted"
+          style="margin-top:18px;margin-bottom:4px"
+        >
+          Email
+        </p>
+
+        <a href="mailto:Pouyaabsari@gmail.com">
+          Pouyaabsari@gmail.com
+        </a>
+
       </div>
+
+
+      <div class="card">
+
+        <h3 style="margin-top:0;color:var(--navy)">
+          Location
+        </h3>
+
+        <p class="muted">
+          Tehran Province , Iran
+        </p>
+
+        <p
+          class="muted"
+          style="margin-bottom:0"
+        >
+
+          Available for engineering internships,
+          research collaborations, technical projects
+          and industrial opportunities.
+
+        </p>
+
+      </div>
+
     </div>
+
   </section>
+
 
 </main>
 
+
 <footer>
+
   © 2026 Pouya Absari · Mechanical Engineering Portfolio
-  <span class="small">Professional portfolio · Designed for desktop & mobile</span>
+
+  <span class="small">
+    Professional portfolio · Designed for desktop & mobile
+  </span>
+
 </footer>
 
+
 </body>
-</html>
+        </html>
